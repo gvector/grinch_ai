@@ -23,7 +23,7 @@ excuse-generator/
 │   ├── __init__.py
 │   ├── news_api.py        # NewsAPI, GNews wrapper
 │   ├── scraper.py         # Playwright per weird news
-│   └── image_search.py    # Unsplash/Pexels
+│   └── image_search.py    # [Unsplash](https://unsplash.com/developers)/[Pexels](https://www.pexels.com/api/)
 │
 ├── storage/
 │   ├── qdrant_manager.py  # Gestione vector DB
