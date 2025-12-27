@@ -101,12 +101,12 @@ User Input: "Need excuse for missing deadline"
          ▼
     NEWS SCRAPER ────────┐
     Parallel collection  │
-    ├─ NewsAPI          │
-    ├─ GNews            │──▶ Fresh news articles
-    └─ Web scraping     │
-         │              │
-         ▼              │
-    ORCHESTRATOR ◀──────┘
+    ├─ NewsAPI           │
+    ├─ GNews             │──▶ Fresh news articles
+    └─ Web scraping      │
+         │               │
+         ▼               │
+    ORCHESTRATOR ◀───────┘
     Filters relevant news
          │
          ▼
@@ -169,17 +169,17 @@ Excuse Storage Flow:
 Generated Excuse
        │
        ▼
-Text Embedding (768-dim vector)
+Text Embedding (512-dim vector)
        │
        ▼
-┌─────────────────────────────┐
-│ Qdrant Collection           │
+┌────────────────────────────┐
+│ Qdrant Collection          │
 │ ├─ Excuse text             │
 │ ├─ Embedding vector        │
 │ ├─ Metadata (date, source) │
 │ ├─ Evidence links          │
 │ └─ Success rating          │
-└─────────────────────────────┘
+└────────────────────────────┘
        │
        ▼
 Semantic Search Enabled
