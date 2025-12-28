@@ -15,6 +15,7 @@ Excuse Generator is a multi-agent system that leverages fresh news data to craft
 
 ## Installation
 Clone the repository and install dependencies:
+
 #### Repository cloning
 ```bash
 git clone https://github.com/yourusername/grinch_ai.git
@@ -27,11 +28,10 @@ Create a .env file with your API keys:
 ```text
 OPENAI_API_KEY=your_openai_key
 NEWS_API_KEY=your_newsapi_key
-QDRANT_API_KEY=your_qdrant_key
-RE`IS_URL=your_redis_url
 ```
 
 ## Usage
+
 ### Quick Start
 Run the Streamlit application:
 
@@ -41,52 +41,55 @@ streamlit run app.py
 Example: Generate an Excuse
 
 ```python
-from agents.orchestrator import ExcuseOrchestrator
+from agents.excuse_creator import ExcuseCreatorAgent
 
-# Initialize the orchestrator
-orchestrator = ExcuseOrchestrator()
+agent = ExcuseCreatorAgent()
 
-# Generate excuse options
-excuses = orchestrator.generate_excuses(
-    situation="late to meeting",
-    context="work meeting at 9am"
+request = ExcuseRequest(
+     situation="in ritardo per un meeting",
+     context="meeting di lavoro alle 9:00",
+     recipient="capo",
+     tone=ExcuseTone.PROFESSIONAL
 )
 
-# Select and build evidence
-selected = excuses[0]
-evidence = orchestrator.build_evidence(selected)
-
-# Draft message
-message = orchestrator.draft_message(selected, evidence)
+excuses = agent.generate_excuses(request)
+print(f"{i}. {excuse.text}")
+print(f"  📊 Plausibility: {excuse.plausibility_score:.2f} | "
+     f"   Creativity: {excuse.creativity_score:.2f} | "
+     f"   Risk: {excuse.risk_level}")
+print(f"  💡 Why: {excuse.explanation}\n")
 ```
 
 ## Project Structure
 ```text
-excuse-generator/
-├── app.py                    # Main Streamlit application
-├── config/
-│   ├── settings.py          # Configuration and API keys
-│   └── prompts.py           # System prompts for AI agents
-├── agents/
-│   ├── orchestrator.py      # DataPizza Pipeline orchestrator
-│   ├── news_collector.py    # News gathering agent + tools
-│   ├── excuse_creator.py    # Excuse generation agent
-│   └── evidence_builder.py  # Evidence creation agent
-├── tools/
-│   ├── news_api.py          # NewsAPI and GNews wrappers
-│   ├── scraper.py           # Playwright-based web scraper
-│   └── image_search.py      # Unsplash/Pexels integration
-├── storage/
-│   ├── qdrant_manager.py    # Vector database management
-│   ├── redis_cache.py       # Cache layer manager
-│   └── schemas.py           # Pydantic data models
-├── utils/
-│   ├── auth.py              # API key validation
-│   └── helpers.py           # Utility functions
-├── data/
-│   └── qdrant_data/         # Local Qdrant storage
-├── requirements.txt
-└── README.md
+grinch_ai
+├─ README.md
+├─ agents
+│  ├─ __init__.py
+│  ├─ evidence_builder.py
+│  ├─ excuse_creator.py
+│  ├─ news_collector.py
+│  └─ orchestrator.py
+├─ app.py                     # Main Streamlit application
+├─ config
+│  ├─ __init__.py
+│  ├─ logs
+│  ├─ output
+│  │  ├─ photos
+│  │  └─ tickets
+│  └─ settings.py
+├─ main.py
+├─ requirements.txt
+├─ storage
+│  ├─ __init__.py
+│  ├─ memory.py
+│  └─ schemas.py              # Pydantic data models
+├─ test_excuse_creator.py
+├─ test_setup.py
+└─ utils
+   ├─ __init__.py
+   ├─ helpers.py              # Utility functions
+   └─ llm_client.py
 ```
 
 ### System Architecture

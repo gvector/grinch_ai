@@ -5,8 +5,6 @@ from datapizza.agents.agent import Agent
 from datapizza.tools import tool
 
 
-
-
 @tool
 def get_weather(news: str, category: str) -> str:
     
