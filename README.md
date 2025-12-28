@@ -64,32 +64,32 @@ print(f"  💡 Why: {excuse.explanation}\n")
 ```text
 grinch_ai
 ├─ README.md
-├─ agents
+├─ agents/                    # Specialized AI Agents
 │  ├─ __init__.py
-│  ├─ evidence_builder.py
-│  ├─ excuse_creator.py
-│  ├─ news_collector.py
-│  └─ orchestrator.py
+│  ├─ evidence_builder.py     # Evidence builder Agent
+│  ├─ excuse_creator.py       # Excuse Creator Agent
+│  ├─ news_collector.py       # News Collector Agent
+│  └─ orchestrator.py         # Orchestrator System
 ├─ app.py                     # Main Streamlit application
-├─ config
+├─ config/
 │  ├─ __init__.py
-│  ├─ logs
-│  ├─ output
+│  ├─ logs/
+│  ├─ output/                 # Generated Assets
 │  │  ├─ photos
 │  │  └─ tickets
-│  └─ settings.py
+│  └─ settings.py             # Global Configuration
 ├─ main.py
 ├─ requirements.txt
-├─ storage
+├─ storage/
 │  ├─ __init__.py
-│  ├─ memory.py
-│  └─ schemas.py              # Pydantic data models
+│  ├─ memory.py               # Memory Managment
+│  └─ schemas.py              # Pydantic Data Models
 ├─ test_excuse_creator.py
 ├─ test_setup.py
-└─ utils
+└─ utils/
    ├─ __init__.py
-   ├─ helpers.py              # Utility functions
-   └─ llm_client.py
+   ├─ helpers.py              # Utility Functions
+   └─ llm_client.py           # OpenAI Client
 ```
 
 ### System Architecture
